@@ -1,0 +1,71 @@
+%
+%	Begrifflichkeiten
+%
+
+\pagebreak
+\section{Data definition and wrangling}
+
+\onehalfspacing
+
+\subsection{The Blog}
+
+\subsection{Plausible}
+
+In a previous paper, I have covered Plausible in more detail and compared it with other web analytics tools\footnote{See \textit{Frank, C. (2020)}: Usefulness of open-source tools for web analytics in E-Marketing.\cite{previousPaper}}; I will not go any further into details of the tool itself in this paper.
+
+\subsection{Count}
+
+To analyze and visualize the data, I'll be using data notebooks from Count. Like Jupyter notebooks that combine (Python) Code and Text, the data notebooks combine (SQL) Data and Text in a pretty ingenious way. Data notebooks support data-driven decision making, and they are currently in open beta.\footnote{See \textit{Count.co (2020)}: About Count.\cite{aboutCount}}
+
+\subsection{Web Traffic KPIs}
+
+In marketing categories, a blog belongs to inbound marketing, as it tries to offer engaging content and create value for the visitors but does not reach out by itself. 
+
+Unlike outbound email campaigns, for example, that ask the visitor to view a particular website, a blog relies on its content and the willingness of the visitor to actively choose the site for a visit, for example, by being pointed to a post from a Google search result or a tweet.
+
+In WordPress, there is an option to subscribe to a blog to get a notification on new posts; WordPress also provides the ability to subscribe to a blog's RSS feed. Even though, as this requires active user interaction and interest, blogs are considered an inbound channel.
+
+In a recent paper on inbound marketing, Yvonne Romes identifies a couple of important KPIs for inbound marketing, a couple of which I will summarize here based on her paper:\footnote{See \textit{Romes, Y. (2020)}: 10 Inbound KPIs, die jetzt auch Personaler kennen sollten.\cite{inboundKPI}}
+
+\begin{itemize}
+\item Page Views
+\item Bounce Rate
+\item Visit Duration
+\item Unique Visitors
+\end{itemize}
+
+Page Views is the number of clicks a specific page has received; on a blog, more page views indicate more engaging content.
+
+Bounce Rate describes the rate of users that leave the site without selecting another link; a high bounce rate can indicate a lack of engaging or interesting content.
+
+Visit Duration is the amount of time a unique visitor spends on the website; for a blog that mainly offers content to read, a longer duration most likely indicates higher engagement.
+
+A unique visitor is a visitor that can be differentiated from another visitor. Unlike many other platforms, Plausible does not use tracking cookies to identify individual visitors but relies on publicly available information, such as an IP address, to differentiate them. Even though the metric is less accurate with Plausible than with other platforms, it's still an important metric, and as before, on a blog, more visitors usually indicate higher engagement.
+
+In this paper, these are the four metrics that I will focus on.
+
+\subsection{Social Media and Loneliness}
+
+In the current COVID-19 pandemic, social distancing is a key element in containing the virus's spread. Social distancing over a long period of time can increase loneliness and significantly affect people's health negatively, according to a recent study conducted by the American Psychological Association.\footnote{See \textit{Luchetti, M. (2020)}: The trajectory of loneliness in response to COVID-19. \cite{apaLoneliness}}
+
+In the study, the researchers formulate the hypothesis that an increase in perceived support from others can offset loneliness during the required isolation.
+
+One element to offset the effects of loneliness is increased interaction on social media and virtual meetings with video. Social media interaction includes reading blogs - the more engaging a blog post is, the more chances it has to reach people to whom it will be entertaining or otherwise beneficial.
+
+Thus this analysis aims to get an answer for my blog on the question "On which subject(s) should I post to increase my reach?". We will be using visualization and correlation as the primary means of analysis to increase the value of the blog for others.
+
+\subsection{Data wrangling}
+
+\begin{lstlisting}[caption=Vader Example, frame=single, basicstyle=\ttfamily]
+from vaderSentiment.vaderSentiment 
+  import SentimentIntensityAnalyzer
+
+blogPost = "My first ever entirely virtual Christmas and 
+  it went quite well! And so will New Years, I hope."
+
+analyzer = SentimentIntensityAnalyzer()
+
+print(analyzer.polarity_scores(blogPost))
+
+\end{lstlisting}
+
