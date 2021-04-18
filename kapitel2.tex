@@ -54,18 +54,72 @@ One element to offset the effects of loneliness is increased interaction on soci
 
 Thus this analysis aims to get an answer for my blog on the question "On which subject(s) should I post to increase my reach?". We will be using visualization and correlation as the primary means of analysis to increase the value of the blog for others.
 
-\subsection{Data wrangling}
+\subsection{Data Collection}
 
-\begin{lstlisting}[caption=Vader Example, frame=single, basicstyle=\ttfamily]
-from vaderSentiment.vaderSentiment 
-  import SentimentIntensityAnalyzer
+Data exported from the Kölle for Future Blog wp-statistics module as CSV files (Documentation: https://wp-statistics.com/documentation/)
 
-blogPost = "My first ever entirely virtual Christmas and 
-  it went quite well! And so will New Years, I hope."
+\subsection{Data Wrangling}
 
-analyzer = SentimentIntensityAnalyzer()
+\subsubsection{Original Columns}
 
-print(analyzer.polarity_scores(blogPost))
+wp-admin: "date", "IP", "hostname"
+
+wp-comments: "comment-ID", "comment-post-ID", "comment-author", "comment-author-email", "comment-author-url", "comment-author-IP", "comment-date", "comment-date-gmt", "comment-content", "comment-approved", "comment-parent", "comment-type", "user-id", "comment-alter-id", "meta:ct-checked", "meta:ct-checked-now", "meta:ct-bad", "meta:ct-hash", "meta:akismet-result", "meta:akismet-history", "meta:akismet-as-submitted"
+
+wp-pages: "page-id", "uri", "type", "date", "count","id"
+
+wp-search: "ID", "last-counter", "engine", "host", "words", "visitor"
+
+wp-visit: "ID", "last-visit", "last-counter", "visit"
+
+wp-visitor: "ID", "last-counter", "referred", "agent", "platform", "version", "UAString", "IP", "location", "user-id", "hits", "honeypot"
+
+\subsubsection{Removing PII}
+
+wp-admin: Just affecting the author, no change necessary
+
+wp-comments: We're removing anything that could identify the commenter: "comment-author", "comment-author-email", "comment-author-url", "comment-author-IP", "comment-content", "user-id", "comment-alter-id" as well as all meta information: "meta:ct-checked", "meta:ct-checked-now", "meta:ct-bad","meta:ct-hash", "meta:akismet-result", "meta:akismet-history", "meta:akismet-as-submitted" and the column: "comment-approved" which is empty
+
+wp-pages: No personally identifiable information, "id" links to "comment-post-ID"
+
+wp-search: No personally identifiable information, "visitor" links to the id of wp-visitor
+
+wp-visit: No personally identifiable information, total number of visits per day
+
+wp-visitor: We'll remove all admin access and are removing anything that could identify the visitor: "ip", "user-id" plus "UAString" and "honeypot", which were empty
+
+\subsubsection{GDPR}
+
+We can assume that wp-statistics is not GDP-compliant from the amount of data that we need to remove, even though it claims that it is (see Artikel 17 paper and Matomo blog). Furthermore, there is no information visible on the blog that we will process data, as required by DS-GVO. The collection of IP addresses is difficult to justify. Lessons learned:
+
+\begin{itemize}
+ \item Enable Geo-IP location data
+ \item Disable collection of IP addresses
+\end{itemize}
+
+\subsubsection{Removing Spam}
+
+\begin{lstlisting}[caption=Removing Spam, frame=single, basicstyle=\ttfamily]
+$ wc -l wp-visitor-2021-04-05.csv
+68027 wp-visitor-2021-04-05.csv
+
+$ fgrep -e "DE" wp-visitor-2021-04-05.csv | wc -l
+49883
+
+$ fgrep -e "AT" wp-visitor-2021-04-05.csv | wc -l
+519
+
+$ fgrep -e "CH" wp-visitor-2021-04-05.csv | wc -l
+264
+
+$ fgrep -e "CH" -e "AT" -e "DE" wp-visitor-2021-04-05.csv \
+  > wp-visitor-2021-04-05-nospam.csv
+
+$ wc -l wp-visitor-2021-04-05-nospam.csv 
+50564 wp-visitor-2021-04-05-nospam.csv
 
 \end{lstlisting}
 
+\subsubsection{Loading Database}
+
+Creating a BiqQuery database on Google Cloud and connecting a Count data notebook with a read-only service account
