@@ -9,20 +9,21 @@
 
 \subsection{The Blog}
 
-\subsection{Plausible}
+Bla bla
 
-In a previous paper, I have covered Plausible in more detail and compared it with other web analytics tools\footnote{See \textit{Frank, C. (2020)}: Usefulness of open-source tools for web analytics in E-Marketing.\cite{previousPaper}}; I will not go any further into details of the tool itself in this paper. As we will see later, it would be a good alternative to wp-statistics, which is used for the KFF blog
+\subsection{Social Media and Loneliness}
 
-\begin{figure}[H]
-\centering
-\caption {Plausible}
-\includegraphics[width=\linewidth]{images/plausible.png}
-\label{fig:plausible}
-\end{figure}
+In the current COVID-19 pandemic, social distancing is a key element in containing the virus's spread. Social distancing over a long period of time can increase loneliness and significantly affect people's health negatively, according to a recent study conducted by the American Psychological Association.\footnote{See \textit{Luchetti, M. (2020)}: The trajectory of loneliness in response to COVID-19. \cite{apaLoneliness}}
 
-\subsection{Count}
+In the study, the researchers formulate the hypothesis that an increase in perceived support from others can offset loneliness during the required isolation.
 
-To analyze and visualize the data, I'll be using data notebooks from Count. Like Jupyter notebooks that combine (Python) Code and Text, the data notebooks combine (SQL) Data and Text in a pretty ingenious way. Data notebooks support data-driven decision making, and have recently come out of open beta.\footnote{See \textit{Count.co (2020)}: About Count.\cite{aboutCount}}
+One element to offset the effects of loneliness is increased interaction on social media and virtual meetings with video. Social media interaction includes reading blogs - the more engaging a blog post is, the more chances it has to reach people to whom it will be entertaining or otherwise beneficial.
+
+Thus this analysis aims to get an answer for my blog on the question "On which subject(s) should I post to increase my reach?". We will be using visualization and correlation as the primary means of analysis to increase the value of the blog for others.
+
+\subsection{Covid-19 and Hate Speech}
+
+Bla bla
 
 \subsection{Web Traffic KPIs}
 
@@ -50,16 +51,6 @@ Visit Duration is the amount of time a unique visitor spends on the website; for
 A unique visitor is a visitor that can be differentiated from another visitor. Unlike many other platforms, Plausible does not use tracking cookies to identify individual visitors but relies on publicly available information, such as an IP address, to differentiate them. Even though the metric is less accurate with Plausible than with other platforms, it's still an important metric, and as before, on a blog, more visitors usually indicate higher engagement.
 
 In this paper, these are the four metrics that I will focus on.
-
-\subsection{Social Media and Loneliness}
-
-In the current COVID-19 pandemic, social distancing is a key element in containing the virus's spread. Social distancing over a long period of time can increase loneliness and significantly affect people's health negatively, according to a recent study conducted by the American Psychological Association.\footnote{See \textit{Luchetti, M. (2020)}: The trajectory of loneliness in response to COVID-19. \cite{apaLoneliness}}
-
-In the study, the researchers formulate the hypothesis that an increase in perceived support from others can offset loneliness during the required isolation.
-
-One element to offset the effects of loneliness is increased interaction on social media and virtual meetings with video. Social media interaction includes reading blogs - the more engaging a blog post is, the more chances it has to reach people to whom it will be entertaining or otherwise beneficial.
-
-Thus this analysis aims to get an answer for my blog on the question "On which subject(s) should I post to increase my reach?". We will be using visualization and correlation as the primary means of analysis to increase the value of the blog for others.
 
 \subsection{Data Collection}
 
@@ -130,3 +121,7 @@ $ wc -l wp-visitor-2021-04-05-nospam.csv
 \subsubsection{Loading Database}
 
 Creating a BiqQuery database on Google Cloud and connecting a Count data notebook with a read-only service account
+
+\subsection{Count}
+
+To analyze and visualize the data, I'll be using data notebooks from Count. Like Jupyter notebooks that combine (Python) Code and Text, the data notebooks combine (SQL) Data and Text in a pretty ingenious way. Data notebooks support data-driven decision making, and have recently come out of open beta.\footnote{See \textit{Count.co (2020)}: About Count.\cite{aboutCount}}
