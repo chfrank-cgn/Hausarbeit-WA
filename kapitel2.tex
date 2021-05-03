@@ -137,7 +137,7 @@ Removing columns from CSV files is an easy task for any spreadsheet program.
 
 We can assume that wp-statistics is not GDPR-compliant from the amount of data that we need to remove, even though it claims that it is.\footnote{See \textit{Kohr, J. (2020)}: Matomo vs WP-Statistics. \cite{matomoBlog}} Furthermore, there is no information visible on the blog that we will process personal data, as required by DS-GVO. The collection of IP addresses is especially difficult to justify. 
 
-To achieve GDPR compliance and continue analysis I will recommend the following steps:
+To achieve GDPR compliance and continue analysis I will recommend the following actions for the plugin configuration:
 
 \begin{itemize}
  \item Enable Geo-IP location data
@@ -146,7 +146,7 @@ To achieve GDPR compliance and continue analysis I will recommend the following 
 
 \subsubsection{Removing Spam}
 
-Spam is a big issue for Wordpress blogs, the blogs are easily identifiable on the web and share common vulnerabilities; we can safely assume that our blog is prone to spam access as well. The language of the blog is German, so I am making the assumption that access from non-German speaking countries is likely to be fraudulent. This is a broad assumption and might exclude legitimate traffic, but for the purpose of this paper I will go with the assumption and remove traffic from countries other than Germany, Austria and Swizterland. 
+Spam is a big issue for Wordpress blogs, the blogs are easily identifiable on the web and share common vulnerabilities; we can safely assume that our blog is prone to spam access as well. The language of the blog is German, so I am making the assumption that access from non-German speaking countries is likely to be fraudulent. This is a broad assumption and might exclude legitimate traffic, but for the purpose of this paper I will go with the assumption and remove traffic from countries other than Germany, Austria and Switzerland. 
 
 To do this I use the shell and filter approximately 18000 page impressions:
 
@@ -184,3 +184,5 @@ To load the tables into the data notebook, I created a BiqQuery database on my G
 \includegraphics[width=\linewidth]{images/tables.png}
 \label{fig:tablesCount}
 \end{figure}
+
+Count notebooks make exploration of data really easy. Unfortunately, the internal format is Markdown, and import into LaTeX is not entirely without problems; in the end it did work for the following two chapters. Count also no longer allows anonymous (read) access to the notebooks, otherwise I would have shared the link here.
