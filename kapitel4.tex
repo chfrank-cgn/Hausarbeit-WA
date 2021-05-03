@@ -9,7 +9,9 @@
 
 \subsection{Page Impressions}
 
-Unlike Plausible\footnote{See \textit{Frank, C. (2021)}: Web Traffic Analysis - Predicting Blog Post Performance. \cite{previousBigData}}, wp-statistics does not offer detailed measurements for interaction or click-through rates; we'll need to extrapolate some data and behavior from our knowledge of the site.
+We have completed the exploration of our data, now it's time to focus on the analysis and some of the more common KPIs in web analytics and inbound marketing.
+
+Unfortunately, unlike Plausible\footnote{See \textit{Frank, C. (2021)}: Web Traffic Analysis - Predicting Blog Post Performance. \cite{previousBigData}} or Matomo, wp-statistics does not offer detailed measurements for interaction or click-through rates; we'll need to extrapolate the data and visitor behavior from our knowledge of the site and use whatever metrics the tool offers.
 
 Let's first look at the anatomy of the blog:
 
@@ -20,11 +22,11 @@ Let's first look at the anatomy of the blog:
 \label{fig:pageTypes}
 \end{figure}
 
-We have 417 separate posts on the blog, and 21 pages, in addition to the home page where people start browsing when they do not come from a search engine or a social media reference. 
+In early April we had 417 distinct posts on the blog, together with 21 utility pages, not counting the home page. The home page is where people start browsing when they do not come from a search engine or a social media reference; this could be from a bookmark or the main URL. 
 
-The pages are the top-level menu of the blog, and we can ignore them from here on. Also, we will not focus on the RSS Feed or the search function.
+The 21 pages form the top-level menu of the blog, and we will ignore them from here on. Also, we will not include the RSS Feed or the search function in our evaluation.
 
-We'll now look at the page impressions by type:
+Let's drill down a bit and look at the page impressions by type:
 
 \begin{figure}[H]
 \centering
@@ -33,11 +35,11 @@ We'll now look at the page impressions by type:
 \label{fig:impressionType}
 \end{figure}
 
-The most read items on the blog are the individual posts, which is good for us. It sounds more evident than it is - if a user accesses the main page and scrolls down, we have no way of finding out which post they might have read.
+The most read items on the blog are the individual posts, which is good for us. This might not sound obvious, but if a user accesses the main page from the URL and scrolls down, we have no way of determining which of the recent posts they might have read.
 
-We'll focus on the page impressions of the posts alone and ignore the other types in further analysis.
+For this reason I'll concentrate further analysis on the page impressions of the posts alone and ignore the other types.
 
-Let's try to find the top 12 most-read posts:
+A key question for our analysis is to determine which category of posts are of most interest for our readers. We know the most-used search terms already, but we now need to see whether this is true for the actual posts. As a next step, let's try to find the top 12 most-read posts:
 
 \begin{figure}[H]
 \centering
@@ -46,9 +48,9 @@ Let's try to find the top 12 most-read posts:
 \label{fig:topPerforming}
 \end{figure}
 
-Identifying the actual posts is a bit of manual work: wp-statistics, unfortunately, records in the URI all Url-parameter, including tracking parameters such as fbclid - there's an option in wp-statistics to disable that behavior, but not retroactively. Also, wp-statistics does not record the post title itself. 
+We have the post's id, but identifying the actual posts is a bit of manual work: wp-statistics, unfortunately, records in the URI all Url-parameters, including tracking parameters such as fbclid. There's an option in wp-statistics to disable that behavior, but not retroactively. Also, wp-statistics does not record the post title itself. 
 
-Manual review it is!
+By inspecting the URL and ID, I created manually a new table which includes the actual blog title, together with its date and visits:
 
 \begin{figure}[H]
 \centering
@@ -57,9 +59,9 @@ Manual review it is!
 \label{fig:manualReview}
 \end{figure}
 
-In addition to the global climate strike and local elections that we have identified previously, we've now identified the top-performing post related to Covid-19. Not surprisingly.
+In addition to the global climate strike and local elections, content that we have identified previously from search, we can now see that the top-performing post is related to Covid-19. Which is not at all surprising, given the serious nature of the current situation in the pandemic.
 
-The next set of lessons learned from the data is that these are best performing subjects:
+Going through the top performing blog posts and combining this information with our results on search in the previous chapter, I was able to identify the top four content categories:
 
 \begin{itemize}
  \item Covid-19
@@ -68,11 +70,11 @@ The next set of lessons learned from the data is that these are best performing 
  \item Stop fossil fuels
 \end{itemize}
 
-The blog is an integral part of the communication and supports the community of climate activists in Cologne.
+The blog supports the community of climate activists in Cologne and indeed provides the most needed and sought after information.
 
 \subsection{Direct Engagements through Forms}
 
-The blog has a contact form and a donation form. Are people using it?
+In addition to the posts, the blog also has a contact form and a donation form. Let's have a look and find out if people are actually using them:
 
 \begin{figure}[H]
 \centering
@@ -81,7 +83,7 @@ The blog has a contact form and a donation form. Are people using it?
 \label{fig:engagementForms}
 \end{figure}
 
-Compared to the posts, these numbers are not impressive. Looking at the pages, lessons learned from this would be:
+Compared to the number of impressions on the posts, these numbers are rather low. This is most likely due to their page design and a key takeaway for the future could be the following action items:
 
 \begin{itemize}
  \item Redesign contact form
@@ -90,9 +92,11 @@ Compared to the posts, these numbers are not impressive. Looking at the pages, l
 
 \subsection{Direct Engagement through Comments}
 
-WordPress allows two forms of direct engagement: pingbacks\footnote{See \textit{WPBeginner (2021)}: What is Pingback. \cite{pingBack}} and comments. We do not have any insight into the other form of interaction, trackbacks.\footnote{See \textit{WPExplorer.com (2020)}: WordPress Pingbacks and Trackbacks. \cite{trackBack}}
+In addition to reading a post, WordPress allows two forms of direct engagement: pingbacks\footnote{See \textit{WPBeginner (2021)}: What is Pingback. \cite{pingBack}} and comments. 
 
-Let's start with the pingbacks:
+There's one other form of interaction, trackbacks\footnote{See \textit{WPExplorer.com (2020)}: WordPress Pingbacks and Trackbacks. \cite{trackBack}}, of which we do not have any insight into.
+
+Let's start with the pingbacks and identify the blog posts that are most referenced from other blogs:
 
 \begin{figure}[H]
 \centering
@@ -110,7 +114,9 @@ The two most linked posts are also in the list of the dozen most-visited posts a
 \label{fig:pingbackTargets}
 \end{figure}
 
-Let's continue with the comments:
+With an open-pit lignite mine nearby, fossil fuels, or better the need to stop using it, is on everybody's mind and our community seems to be a valued source for reference information.
+
+For the final part of the engagement analysis, let's look at comments. Leaving a comment is the most active form of engagement a blog can have - there are no "Like" or "Share" buttons, to interact in any other way than reading a post the only option they have is to leave a comment:
 
 \begin{figure}[H]
 \centering
@@ -119,7 +125,7 @@ Let's continue with the comments:
 \label{fig:comments}
 \end{figure}
 
-The two posts with the most comments are about participating in  the climate pact and a lignite complaint, and the third is our most visited post:
+The two posts with the most comments are about participating in the climate accord and a lignite complaint, and the third is our most visited post on Covid-19:
 
 \begin{figure}[H]
 \centering
@@ -128,9 +134,11 @@ The two posts with the most comments are about participating in  the climate pac
 \label{fig:commentTarget}
 \end{figure}
 
-There's significant engagement in our core messages from the community; the blog is an integral part of our digital outreach and helps us keep the activism alive in the Covid-19 pandemic.
+We can again see significant engagement in our core messaging from the community. 
 
-As the final step, we'll look at multiple interactions, i.e. comments to comments
+The blog is an integral part of our digital outreach and helps us keeping the activism alive during the Covid-19 pandemic.
+
+To finish, we'll look at multiple interactions, i.e. whether we have comments on comments:
 
 \begin{figure}[H]
 \centering
@@ -139,13 +147,13 @@ As the final step, we'll look at multiple interactions, i.e. comments to comment
 \label{fig:commentsComment}
 \end{figure}
 
-For a blog, this is the highest form of interaction, a post that's not only read and commented on but where the readers have replied to a previous comment! 
+And there quite a few - for a blog, this is the highest form of interaction: A post that's not only read and commented on, but where the readers also have replied to a previous comment.
 
 \subsection{Improving Analytics}
 
-Improve analytics through the use of Matomo or Plausible
+From the analysis of the data and given the difficulties with extracting basic metrics, I think an important task for the future will be to improve the web analytics capabilities of the blog through the use of a different tool, such as Matomo or Plausible
 
-In a previous paper, I have covered Plausible in more detail and compared it with other web analytics tools.\footnote{See \textit{Frank, C. (2020)}: Usefulness of open-source tools for web analytics in E-Marketing. \cite{previousPaper}} I will not go any further into details of the tool itself in this paper. As we will see later, it would be a good alternative to wp-statistics, which is used for the KFF blog
+In a previous paper, I have covered Plausible in more detail and compared it with other web analytics tools.\footnote{See \textit{Frank, C. (2020)}: Usefulness of open-source tools for web analytics in E-Marketing. \cite{previousPaper}} I will not go any further into details of the tool itself here.
 
 \begin{figure}[H]
 \centering
@@ -154,26 +162,20 @@ In a previous paper, I have covered Plausible in more detail and compared it wit
 \label{fig:plausible}
 \end{figure}
 
-Pay attention to web vitals\footnote{See \textit{Sousa, B. (2021)}: Google Web Vitals best practices for single-page apps.\cite{webVitals}}
+In addition to a better tool for web analytics, I will also recommend the following tasks:
 
-Install a caching plugin to speed up mobile access\footnote{See \textit{Crowe, A. (2021)}: WordPress Checklist. \cite{wpCachePlugin}}
+\begin{itemize}
+ \item Paying attention to web vitals\footnote{See \textit{Sousa, B. (2021)}: Google Web Vitals best practices for single-page apps.\cite{webVitals}}
+ \item Installing a caching plugin to speed up mobile access\footnote{See \textit{Crowe, A. (2021)}: WordPress Checklist. \cite{wpCachePlugin}}
+\end{itemize}
 
 \subsection{Sustaining Engagement}
 
-High community engagement with a focus on local events
+From analysing the web traffic data, we can safely deduct a couple of items:
 
-Digital activism supports offline activism and can combat loneliness
-
-We need to fight hate speech, Ableism and other forms of -isms in our communication
-
-To improve outreach, implement the lessons learned (IP addresses, data processing info, best-performing subjects, target audience, simplify contact and donations)
-
-Coming back to the original question for the paper "On which subject(s) should I post to increase my reach?" we now have a definite answer.
-
-According to the data, posting more content on Climate Change and Covid-19 should lead to more visitors' engagement.
-
-I'll keep that in mind for the future and change the content that I post accordingly.
-
-Cross-posting to Facebook is an already established automated procedure, so I'll keep doing that for now. Also, I like posting in English, so I'll continue this practice as well.
-
-I will work on the other two recommendations to improve Google search and mobile usability.
+\begin{itemize}
+ \item To sustain the current level of high community engagement, we should continue our focus on local events (elections and issues around fossil fuels) and the major global crises (Covid-19 and the climate emergency)
+ \item We've found out that digital activism supports offline activism and can help in combating loneliness
+ \item To keep our communication safe and open, we need to fight hate speech, Ableism and all other forms of negative -isms in our communication
+ \item To further improve our outreach, we should to implement the lessons learned above
+\end{itemize}
